@@ -27,3 +27,42 @@
 .author{
   float: right;
 }
+.search_box{
+  width: 510rpx;
+  height: 80rpx;
+  border-radius: 1000rpx;
+  background-color: #F0F0F0;
+  float: left;
+  padding-left: 40rpx;
+  margin-left: 20rpx;
+}
+.serchbutton{
+  width: 140rpx;
+  height: 80rpx;
+  background-color: #D8D8D8;
+  border-radius: 1000rpx;
+  text-align: center;
+  line-height: 80rpx;
+}
+.serchbutton{
+  margin-top: 20rpx;
+}
+.wenzi{
+  margin-top: 40rpx;
+  margin-left: 40rpx;
+}
+.biaoqian{
+  width: 100%;
+  margin: 20rpx;
+}
+.wenzi,.biaoqian{
+  color: #626262;
+}
+.biao{
+  padding: 0rpx 20rpx;
+  height: 80rpx;
+  border: 1rpx solid #626262;
+  float: left;
+  margin: 20rpx;
+  line-height: 80rpx;
+}

@@ -9,8 +9,7 @@ Page({
       {url:'../index/image/banner2.jpg'},
       {url: '../index/image/banner2.2.jpg' },
       {url: '../index/image/banner2.3.jpg' }
-    ],
-    sosuoneirong:''
+    ]
   },
   // formSubmit: function (e) {
   //   var that = this;

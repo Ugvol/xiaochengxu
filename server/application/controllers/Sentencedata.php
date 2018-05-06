@@ -44,10 +44,16 @@ class Sentencedata extends CI_Controller {
     $result=$this->sentence_model->get_list7();
     echo json_encode($result);
   }
-   public function get_sentence_list8()
+  public function get_sentence_list8()
   {
     $this->load->model('sentence_model');
     $result=$this->sentence_model->get_list8();
+    echo json_encode($result);
+  }
+  public function get_search_list()
+  {
+    $this->load->model('sentence_model');
+    $result=$this->sentence_model->search_list();
     echo json_encode($result);
   }
 }

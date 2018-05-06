@@ -5,9 +5,25 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    sosuoneirong: ''
   },
-
+  formSubmit: function (e) {
+  var that = this;
+  var formData = e.detail.value;
+    wx.request({
+      url: 'https://6jvh6uvq.qcloud.la/index.php/sentencedata/get_search_list',
+      data: formData,
+      header: {
+        'Content-Type': 'application/json'
+      },
+      success: function (res) {
+        console.log(res.data)
+      }
+    })
+  },
+  formReset: function () {
+    console.log('form发生了reset事件');
+  },
   /**
    * 生命周期函数--监听页面加载
    */

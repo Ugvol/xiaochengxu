@@ -1,22 +1,8 @@
 <!--pages/search/search.wxml-->
-<view class='sentence_box claerfix'>
-  <view class='sentence_button_box claerfix'>
-    <view class='sentence'>天行健，君子以自强不息。地势坤，君子以厚德载物。</view>
-    <button class='collection_button'>删除</button>
-  </view>
-  <view class='suthor_box'>
-    <view class='author'>《周易》</view>
-  </view>
-</view>
-<view class='sentence_box claerfix'>
-  <view class='sentence_button_box claerfix'>
-    <view class='sentence'>君子喻于义，小人喻于利。</view>
-    <button class='collection_button'>删除</button>
-  </view>
-  <view class='suthor_box'>
-    <view class='author'>《论语》</view>
-  </view>
-</view>
+<form bindsubmit='forSubmit' bindreset='formReset'>
+  <input type='text' class='search_box' name="osearch" value='{{sosuoneirong}}'></input>
+  <button class='serchbutton' form-type='submit'>搜索</button>
+</form>
 <view class='sentence_box claerfix'>
   <view class='sentence_button_box claerfix'>
     <view class='sentence'>君子之交淡如水，小人之交甘若醴。</view>

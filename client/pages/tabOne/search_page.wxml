@@ -12,12 +12,9 @@
     <input type='text' class='search_box'></input>
     <input type='submit' class='serchbutton' value='搜索'></input> 
   </form> -->
-  <form bindsubmit='forSubmit' bindreset='formReset'>
-   <input type='text' class='search_box' name="osearch" value='{{sosuoneirong}}'></input>
    <navigator url="../search/search">
     <button class='serchbutton' form-type='submit'>搜索</button>
    </navigator>
-   </form>
    <view class='wenzi'>热门搜索</view>
    <view class='biaoqian'>
     <view class='biao'>励志</view>

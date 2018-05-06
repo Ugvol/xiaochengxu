@@ -20,17 +20,8 @@
    left:480rpx;
    right: 0rpx;
 } */
-.search_box{
-  width: 510rpx;
-  height: 80rpx;
-  border-radius: 1000rpx;
-  background-color: #F0F0F0;
-  float: left;
-  padding-left: 40rpx;
-  margin-left: 20rpx;
-}
 .serchbutton{
-  width: 140rpx;
+  width: 700rpx;
   height: 80rpx;
   background-color: #D8D8D8;
   border-radius: 1000rpx;
