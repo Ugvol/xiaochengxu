@@ -26,7 +26,7 @@
 			return DB::select('sentence_table', ['*'],'category_id=8');
 		}
     public function search_list(){
-			return DB::select('sentence_table', ['*']);
+			return DB::select('sentence_table', ['*'],'sentence_content=%formData%');
 		}
 	}
 ?>
