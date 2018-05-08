@@ -1,8 +1,9 @@
 {
   "pages": [
     "pages/index/index",
-     "pages/addCgi/addCgi",
+    "pages/addCgi/addCgi",
     "pages/tabOne/search_page",
+    "pages/tabTwo/my_page",
     "pages/daily_recommendation1/daily_recommendation1",
     "pages/goto_publish/goto_publish",
     "pages/my_collection/my_collection",
@@ -17,8 +18,7 @@
     "pages/poetry/poetry",
     "pages/booktuijian/booktuijian",
     "pages/search/search",
-    "pages/grade/grade",
-    "pages/tabTwo/my_page"
+    "pages/grade/grade"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

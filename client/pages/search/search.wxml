@@ -1,14 +1,14 @@
 <!--pages/search/search.wxml-->
-<form bindsubmit='forSubmit' bindreset='formReset'>
+<form bindsubmit='formSubmit' bindreset='formReset'>
   <input type='text' class='search_box' name="osearch" value='{{sosuoneirong}}'></input>
   <button class='serchbutton' form-type='submit'>搜索</button>
 </form>
-<view class='sentence_box claerfix'>
+<view class='sentence_box claerfix' wx:for="{{sentence}}" wx:key="{{index}}">
   <view class='sentence_button_box claerfix'>
-    <view class='sentence'>君子之交淡如水，小人之交甘若醴。</view>
-    <button class='collection_button'>删除</button>
+    <view class='sentence'>{{item.sentence_content}}</view>
+    <button class='collection_button'>收藏</button>
   </view>
   <view class='suthor_box'>
-    <view class='author'>《庄子》</view>
+    <view class='author'>{{item.sentence_source}}</view>
   </view>
 </view>

@@ -11,25 +11,6 @@ Page({
       {url: '../index/image/banner2.3.jpg' }
     ]
   },
-  // formSubmit: function (e) {
-  //   var that = this;
-  //   var formData = e.detail.value;
-  //   wx.request({
-  //     url: 'http://test.com:8080/test/socket.php?msg=2',
-  //     data: formData,
-  //     header: {
-  //       'Content-Type': 'application/json'
-  //     },
-  //     success: function (res) {
-  //       console.log(res.data)
-  //       that.modalTap();
-  //     }
-  //   })
-  // },
-  // formReset: function () {
-  //   console.log('form发生了reset事件');
-  //   this.modalTap2();
-  // },
   /**
    * 生命周期函数--监听页面加载
    */

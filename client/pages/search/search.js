@@ -5,7 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    sosuoneirong: ''
+    sosuoneirong: '',
+    sentence: []
   },
   formSubmit: function (e) {
   var that = this;
@@ -17,7 +18,10 @@ Page({
         'Content-Type': 'application/json'
       },
       success: function (res) {
-        console.log(res.data)
+        console.log(res.data),
+        that.setData({
+          sentence: res.data
+        })
       }
     })
   },
