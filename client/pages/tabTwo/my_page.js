@@ -25,7 +25,7 @@ Page({
             logged: true,
             showView: false
           })
-
+          
         } else {
           // 如果不是首次登录，不会返回用户信息，请求用户信息接口获取
           qcloud.request({
@@ -46,6 +46,15 @@ Page({
             }
           })
         }
+        //sdgsgsgsg
+        // wx.request({
+        //   //获取openid接口  
+        //   url: 'https://api.weixin.qq.com/sns/jscode2session?appid=APPID&secret=SECRET&js_code=JSCODE&grant_type=authorization_code',
+        //   data: {
+        //     js_code: result.code,
+        //   },
+        // })
+          //sdgsgsthts
       },
 
       fail(error) {

@@ -10,10 +10,12 @@ Page({
   },
   formSubmit: function (e) {
   var that = this;
-  var formData = e.detail.value;
+  var formData = e.detail.value.osearch;
     wx.request({
       url: 'https://6jvh6uvq.qcloud.la/index.php/sentencedata/get_search_list',
-      data: formData,
+      data: {
+        val: formData
+      },
       header: {
         'Content-Type': 'application/json'
       },

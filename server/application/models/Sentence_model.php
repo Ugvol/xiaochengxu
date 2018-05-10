@@ -25,8 +25,11 @@
     public function get_list8(){
 			return DB::select('sentence_table', ['*'],'category_id=8');
 		}
-    public function search_list(){
-			return DB::select('sentence_table', ['*']);
+    public function search_list($val){
+      $db = DB::getInstance();
+      $strSql = "select * from sentence_table where sentence_content like '%".$val."%'";
+      $result=$db->query($strSql);
+      return $result->fetchAll();
 		}
 	}
 ?>
