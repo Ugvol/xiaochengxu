@@ -31,5 +31,10 @@
       $result=$db->query($strSql);
       return $result->fetchAll();
 		}
+    public function add_user_list($val){
+      DB::insert('user_table', [
+        'openid' => $val,
+      ]);
+		}
 	}
 ?>

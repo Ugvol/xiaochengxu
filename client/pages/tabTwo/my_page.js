@@ -17,17 +17,16 @@ Page({
     var that = this
     // 调用登录接口
     qcloud.login({
-      success(result) {
-        if (result) {
+      success(res) {
+        if (res) {
           util.showSuccess('登录成功')
           that.setData({
-            userInfo: result,
+            userInfo: res,
             logged: true,
             showView: false
           })
-          
         } else {
-          // 如果不是首次登录，不会返回用户信息，请求用户信息接口获取
+          //如果不是首次登录，不会返回用户信息，请求用户信息接口获取
           qcloud.request({
             url: config.service.requestUrl,
             login: true,
