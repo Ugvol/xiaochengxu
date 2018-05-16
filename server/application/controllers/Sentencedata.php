@@ -60,7 +60,8 @@ class Sentencedata extends CI_Controller {
   public function get_user_list()
   {
     $code=$_REQUEST['code'];
-    $url: 'https://api.weixin.qq.com/sns/jscode2session?appid=wxb8224cd2db31ceb1&secret=62497cd7be447460f69a22b6e728b27e&js_code=$code&grant_type=authorization_code';
+    echo $code.'PHP打印出来的';
+    $url= 'https://api.weixin.qq.com/sns/jscode2session?appid=wxb8224cd2db31ceb1&secret=62497cd7be447460f69a22b6e728b27e&js_code=$code&grant_type=authorization_code';
     function getcurl($url){
       $ch=curl_init();
       curl_setopt($ch,CURLOPT_URL,$url);
@@ -77,7 +78,7 @@ class Sentencedata extends CI_Controller {
     $res=getcurl($url);
     print_r($res);
     $this->load->model('sentence_model');
-    $result=$this->sentence_model->add_user_list($res);
+    $this->sentence_model->add_user_list($res);
   }
 }
 ?>
