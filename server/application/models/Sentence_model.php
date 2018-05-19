@@ -31,10 +31,19 @@
       $result=$db->query($strSql);
       return $result->fetchAll();
 		}
-    public function add_user_list($val){
-      DB::insert('user_table', [
-        'openid' => $val,
-      ]);
+    public function add_user_list($openid){
+      $allopenid=array();
+      $allopenid[]=DB::select('user_table', ['openid']);
+      if(in_array($openid,$allopenid)){
+        echo 'openid已存在';
+      }
+      else{
+        DB::insert('user_table', [
+          'openid' => $openid,
+          'user_integral'=> 0
+        ]);
+        echo '插入成功';
+      }
 		}
 	}
 ?>

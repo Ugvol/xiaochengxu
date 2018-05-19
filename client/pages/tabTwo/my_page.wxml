@@ -9,10 +9,10 @@
               background-size="cover"
       ></image>
       <view>
-        <button class="userinfo-nickname" bindgetuserinfo='login' open-type='getUserInfo'>{{logged ? userInfo.nickName : '点击登录'}}></button>
+        <button class="userinfo-nickname" bindgetuserinfo='bindGetUserInfo' open-type='getUserInfo'>{{logged ? userInfo.nickName : '点击登录'}}></button>
         <text class="userinfo-nickname" wx:if="{{logged}}">{{userInfo.lastLoginTime}}</text>
       </view>
-      <button class="{{showView?'oexit_hide':'oexit_show'}}">退出</button>
+      <!-- <button class="{{showView?'oexit_hide':'oexit_show'}}">退出</button> -->
     </view>
   </view>
   <view class='want_publish_list'>

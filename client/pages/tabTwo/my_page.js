@@ -10,89 +10,59 @@ Page({
     requestResult: ''
   },
   // 用户登录示例
-  login: function () {
-    var sig=this
-    if (this.data.logged) return
-    util.showBusy('正在登录')
-    var that = this
-    // 调用登录接口
-    qcloud.login({
-      success(res) {
-        if (res) {
-          util.showSuccess('登录成功')
-          that.setData({
-            userInfo: res,
-            logged: true,
-            showView: false
-          })
-        } else {
-          //如果不是首次登录，不会返回用户信息，请求用户信息接口获取
-          qcloud.request({
-            url: config.service.requestUrl,
-            login: true,
-            success(result) {
-              util.showSuccess('登录成功')
-              that.setData({
-                userInfo: result.data.data,
-                logged: true,
-                showView: false
-              })
-            },
-
-            fail(error) {
-              util.showModel('请求失败', error)
-              console.log('request fail', error)
-            }
-          })
-        }
-        //sdgsgsgsg
-        // wx.request({
-        //   //获取openid接口  
-        //   url: 'https://api.weixin.qq.com/sns/jscode2session?appid=APPID&secret=SECRET&js_code=JSCODE&grant_type=authorization_code',
-        //   data: {
-        //     js_code: result.code,
-        //   },
-        // })
-          //sdgsgsthts
-      },
-
-      fail(error) {
-        util.showModel('登录失败', error)
-        console.log('登录失败', error)
-      }
-    })
-  },
-
-  // 切换是否带有登录态
-  switchRequestMode: function (e) {
-    this.setData({
-      takeSession: e.detail.value
-    })
-    this.doRequest()
-  },
-
-  doRequest: function () {
-    util.showBusy('请求中...')
-    var that = this
-    var options = {
-      url: config.service.requestUrl,
-      login: true,
-      success(result) {
-        util.showSuccess('请求成功完成')
-        console.log('request success', result)
+  bindGetUserInfo: function (e) {//点击按钮时触发
+    var that= this;
+    var openId = (wx.getStorageSync('openId'));
+    //console.log(e.detail.userInfo)
+    if (e.detail.userInfo) {//用户按了授权按钮
+      if (openId) {//之前获取过openId
         that.setData({
-          requestResult: JSON.stringify(result.data)
+          userInfo: e.detail.userInfo,
+          logged: true,
+          showView: false
         })
-      },
-      fail(error) {
-        util.showModel('请求失败', error);
-        console.log('request fail', error);
+        console.log("登陆成功");
       }
-    }
-    if (this.data.takeSession) {  // 使用 qcloud.request 带登录态登录
-      qcloud.request(options)
-    } else {    // 使用 wx.request 则不带登录态
-      wx.request(options)
+      else{
+        wx.login({
+          success: function (res) {
+            console.log(res.code);
+            if (res.code) {
+              var ocode=res.code;
+              wx.getUserInfo({
+                success: function (res_user) {
+                  wx.request({
+                    url: 'https://6jvh6uvq.qcloud.la/index.php/sentencedata/get_user_list',
+                    data: {
+                      oocode: ocode
+                    },
+                    header: {
+                      'Content-Type': 'application/json'
+                    },
+                    success: function (res) {
+                      that.setData({
+                        userInfo: e.detail.userInfo,
+                        logged: true,
+                        showView: false
+                      })
+                      wx.setStorageSync('openId', res.data);
+                      console.log(res.data);//接收controller/sentencedata.php输出的openid
+                    },
+                    fail:function(){
+                      console.log("失败");
+                    }
+                  })
+                },
+                fail:function(){
+                  console.log("失败");
+                }
+              })
+            }
+          }
+        })
+      }
+    } else {
+      //用户按了拒绝按钮
     }
   },
   /**
@@ -104,9 +74,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+   
   },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
