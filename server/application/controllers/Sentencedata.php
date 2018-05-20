@@ -132,5 +132,12 @@ class Sentencedata extends CI_Controller {
         //     }
         // }
   }
+  public function get_publish_list()
+  {
+  //   $val = $this->input->get('otextarea');
+  //   $this->load->model('sentence_model');
+  //   $result=$this->sentence_model->search_list($val);
+  //   echo json_encode($result);
+  }
 }
 ?>

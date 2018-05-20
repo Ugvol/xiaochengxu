@@ -28,6 +28,12 @@ page{
   line-height: 80rpx;
   margin-top: 10rpx;
 }
+.category input{
+  width: 180rpx;
+  height: 80rpx;
+  text-align: center;
+  line-height: 80rpx;
+}
 .author_source{
   width: 710rpx;
   height: 80rpx;

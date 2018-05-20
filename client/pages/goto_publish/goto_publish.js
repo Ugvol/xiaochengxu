@@ -8,6 +8,29 @@ Page({
     casIndex: 0,
     hiddenToast: true 
   },
+  formSubmit: function (e) {
+    var that=this;
+    var otextarea = e.detail.value.otext;
+    var oleibie = e.detail.value.leibie;
+    var oauthor = e.detail.value.author;
+    wx.request({
+      url: 'https://6jvh6uvq.qcloud.la/index.php/sentencedata/get_publish_list',
+      data:{
+        otextarea=otextarea,
+        oleibie=oleibie,
+        oauthor=oauthor
+      },
+      header: {
+        'Content-Type': 'application/json'
+      },
+      success: function (res) {
+        console.log(res.data)
+        // that.setData({
+        //   sentence: res.data
+        // })
+      }
+    })
+  },
   thisfocus:function(){
     this.setData({
       write_sentence_value:""
