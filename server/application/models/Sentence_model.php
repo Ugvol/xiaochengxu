@@ -32,18 +32,65 @@
       return $result->fetchAll();
 		}
     public function add_user_list($openid){
-      $allopenid=array();
-      $allopenid[]=DB::select('user_table', ['openid']);
-      if(in_array($openid,$allopenid)){
-        echo 'openid已存在';
+      $allopenid=DB::select('user_table', ['openid']);//返回一维对象数组
+      $onem=array();
+      foreach($allopenid as $vol){//遍历对象数组，每次取出一个对象
+         $onem[]=$vol->openid;//取出对象中openid的值,$vol['openid']会报错
+      }
+      if(in_array($openid,$onem)){
+        // echo "该用户已存在";
       }
       else{
         DB::insert('user_table', [
           'openid' => $openid,
           'user_integral'=> 0
         ]);
-        echo '插入成功';
+      }
+		}
+    public function add_publish_list($otextarea,$oleibie,$oauthor,$openId){
+      $rows = DB::row('sentence_table', ['sentence_content'], 'sentence_content = '+$otextarea);
+      if($rows==$otextarea){
+        echo '句子重复';
+      }else{
+        switch($oleibie){
+          case '励志':
+            $oleibie=1;
+            break;
+          case '情感':
+            $oleibie=2;
+            break;
+          case '家书':
+            $oleibie=3;
+            break;
+          case '呓语':
+            $oleibie=4;
+            break;
+          case '歌词':
+            $oleibie=5;
+            break;
+          case '台词':
+            $oleibie=6;
+            break;
+          case '书籍':
+            $oleibie=7;
+            break;
+          case '诗词':
+            $oleibie=8;
+            break;
+        }
+        DB::insert('sentence_table', [
+          'sentence_content' => $otextarea,
+          'sentence_source'=> $oauthor,
+          'category_id' => $oleibie,
+        ]);
+        $addsentenseid = DB::row('sentence_table', ['sentence_id'], 'sentence_content = '+$otextarea);
+        $adduserid = DB::row('user_table', ['user_id'], 'openid = '+$openId);
+         DB::insert('publish_table', [
+          'sentence_id' => $addsentenseid,
+          'user_id'=> $adduserid
+        ]);
+        echo '成功';
       }
 		}
 	}
-?>
+?> 

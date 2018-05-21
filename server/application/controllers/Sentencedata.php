@@ -77,10 +77,10 @@ class Sentencedata extends CI_Controller {
     $json_obj=json_decode($res);
     curl_close($ch);
     $openid = $json_obj->openid;
-    print_r($openid);//向调用此方法的my_page.js输出openid
+    // print_r($openid);//向调用此方法的my_page.js输出openid
     $this->load->model('sentence_model');
-    $this->sentence_model->add_user_list($openid);
-
+    $result=$this->sentence_model->add_user_list($openid);
+    echo json_encode($openid);
 
     // function getcurl($url){
     //   $ch=curl_init();
@@ -134,10 +134,13 @@ class Sentencedata extends CI_Controller {
   }
   public function get_publish_list()
   {
-  //   $val = $this->input->get('otextarea');
-  //   $this->load->model('sentence_model');
-  //   $result=$this->sentence_model->search_list($val);
-  //   echo json_encode($result);
+    $otextarea = $this->input->get('otextarea');
+    $oleibie = $this->input->get('oleibie');
+    $oauthor = $this->input->get('oauthor');
+    $openId = $this->input->get('openId');
+    $this->load->model('sentence_model');
+    $result=$this->sentence_model->add_publish_list($otextarea,$oleibie,$oautho,$openId);
+    // echo json_encode($result);
   }
 }
 ?>

@@ -9,16 +9,16 @@ Page({
     hiddenToast: true 
   },
   formSubmit: function (e) {
-    var that=this;
+    // var that=this;
     var otextarea = e.detail.value.otext;
     var oleibie = e.detail.value.leibie;
     var oauthor = e.detail.value.author;
     wx.request({
       url: 'https://6jvh6uvq.qcloud.la/index.php/sentencedata/get_publish_list',
-      data:{
-        otextarea=otextarea,
-        oleibie=oleibie,
-        oauthor=oauthor
+      data: {
+        otextarea:otextarea,
+        oleibie:oleibie,
+        oauthor:oauthor
       },
       header: {
         'Content-Type': 'application/json'
