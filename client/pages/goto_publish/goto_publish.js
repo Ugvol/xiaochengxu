@@ -13,12 +13,40 @@ Page({
     var otextarea = e.detail.value.otext;
     var oleibie = e.detail.value.leibie;
     var oauthor = e.detail.value.author;
+    var oopenid = getApp().globalData.myopenid; 
+    switch (oleibie) {
+      case '励志':
+        oleibie = 1;
+        break;
+      case '情感':
+        oleibie = 2;
+        break;
+      case '家书':
+        oleibie = 3;
+        break;
+      case '呓语':
+        oleibie = 4;
+        break;
+      case '歌词':
+        oleibie = 5;
+        break;
+      case '台词':
+        oleibie = 6;
+        break;
+      case '书籍':
+        oleibie = 7;
+        break;
+      case '诗词':
+        oleibie = 8;
+        break;
+    }
     wx.request({
       url: 'https://6jvh6uvq.qcloud.la/index.php/sentencedata/get_publish_list',
       data: {
         otextarea:otextarea,
         oleibie:oleibie,
-        oauthor:oauthor
+        oauthor:oauthor,
+        oopenid: oopenid
       },
       header: {
         'Content-Type': 'application/json'

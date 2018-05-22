@@ -23,5 +23,8 @@ App({
         //     }
         //   }
         // })
-    }
+    },
+    globalData: {
+      myopenid: null
+    } 
 })

@@ -17,7 +17,7 @@ Page({
         'content-type': 'application/json' // 默认值
       },
       success: res=> {
-        console.log(res.data)
+        console.log(res.data),
         this.setData({
           sentence: res.data
         })

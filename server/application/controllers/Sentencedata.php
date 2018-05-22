@@ -137,10 +137,17 @@ class Sentencedata extends CI_Controller {
     $otextarea = $this->input->get('otextarea');
     $oleibie = $this->input->get('oleibie');
     $oauthor = $this->input->get('oauthor');
-    $openId = $this->input->get('openId');
+    $oopenid = $this->input->get('oopenid');
     $this->load->model('sentence_model');
-    $result=$this->sentence_model->add_publish_list($otextarea,$oleibie,$oautho,$openId);
-    // echo json_encode($result);
+    $result=$this->sentence_model->add_publish_list($otextarea,$oleibie,$oauthor,$oopenid);
+    echo json_encode($result);
+  }
+  public function get_publication_list()
+  {
+    $oopenid = $this->input->get('oopenid');
+    $this->load->model('sentence_model');
+    $result=$this->sentence_model->get_publish_list($oopenid);
+    echo json_encode($result);
   }
 }
 ?>

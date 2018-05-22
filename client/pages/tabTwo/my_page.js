@@ -22,6 +22,8 @@ Page({
           showView: false
         })
         console.log("登陆成功");
+        getApp().globalData.myopenid = openId;
+
       }
       else{
         wx.login({
@@ -47,6 +49,7 @@ Page({
                       })
                       wx.setStorageSync('openId', res.data);
                       console.log(res.data);//接收controller/sentencedata.php输出的openid
+                      getApp().globalData.myopenid = res.data;//将openid赋给全局变量
                     },
                     fail:function(){
                       console.log("失败");

@@ -4,14 +4,30 @@ Page({
    * 页面的初始数据
    */
   data: {
-    
+    sentence: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    var oopenid = getApp().globalData.myopenid; 
+    wx.request({
+      url: 'https://6jvh6uvq.qcloud.la/index.php/sentencedata/get_publication_list', 
+      data: {
+        oopenid: oopenid
+      },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success: res => {
+        console.log(res.data),
+        // console.log(res.data[0].sentence_id),
+        this.setData({
+          sentence: res.data
+        })
+      }
+    })
   },
 
   /**
