@@ -12,22 +12,30 @@ Page({
    */
   onLoad: function (options) {
     var oopenid = getApp().globalData.myopenid; 
-    wx.request({
-      url: 'https://6jvh6uvq.qcloud.la/index.php/sentencedata/get_publication_list', 
-      data: {
-        oopenid: oopenid
-      },
-      header: {
-        'content-type': 'application/json' // 默认值
-      },
-      success: res => {
-        console.log(res.data),
-        // console.log(res.data[0].sentence_id),
-        this.setData({
-          sentence: res.data
-        })
-      }
-    })
+    if (oopenid){
+      wx.request({
+        url: 'https://6jvh6uvq.qcloud.la/index.php/sentencedata/get_publication_list',
+        data: {
+          oopenid: oopenid
+        },
+        header: {
+          'content-type': 'application/json' // 默认值
+        },
+        success: res => {
+          console.log(res.data),
+            // console.log(res.data[0].sentence_id),
+            this.setData({
+              sentence: res.data
+            })
+        }
+      })
+    }
+    else{
+      wx.showModal({
+        title: '提示',
+        content: '未登录',
+      })
+    }
   },
 
   /**

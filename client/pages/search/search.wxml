@@ -6,7 +6,7 @@
 <view class='sentence_box claerfix' wx:for="{{sentence}}" wx:key="{{index}}">
   <view class='sentence_button_box claerfix'>
     <view class='sentence'>{{item.sentence_content}}</view>
-    <button class='collection_button'>收藏</button>
+    <button class='collection_button' catchtap='presscoll' data-select="{{item.sentence_content}}" data-author="{{item.sentence_source}}">收藏</button>
   </view>
   <view class='suthor_box'>
     <view class='author'>{{item.sentence_source}}</view>

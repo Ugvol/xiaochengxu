@@ -7,6 +7,28 @@ Page({
   data: {
     sentence: []
   },
+  presscoll: function (e) {
+    // var that = this;
+    var clasnam = e.currentTarget.dataset.select;
+    var claauto = e.currentTarget.dataset.author;
+    var oopenid = getApp().globalData.myopenid;
+    if (oopenid) {
+      wx.request({
+        url: 'https://6jvh6uvq.qcloud.la/index.php/sentencedata/add_collection_list',
+        data: {
+          clasnam: clasnam,
+          claauto: claauto,
+          oopenid: oopenid
+        },
+        header: {
+          'Content-Type': 'application/json'
+        },
+        success: function (res) {
+          console.log(res.data)
+        }
+      })
+    }
+  },
   /**
    * 生命周期函数--监听页面加载
    */

@@ -111,5 +111,75 @@
       //   return $jieguo[$x];
       // }
 		}
+    public function add_collection_list($clasnam,$claauto,$oopenid){
+      $pdo = DB::getInstance();
+      // $strSql = "select sentence_id from sentence_table where sentence_content=".$clasnam;
+      $ousersen = DB::row('sentence_table', ['sentence_id'], 'sentence_content = "'.$clasnam.'"');
+      $ouseraut = DB::row('user_table', ['user_id'], 'openid = "'.$oopenid.'"');
+      $addusersenid= $ousersen->sentence_id;
+      $adduserautid= $ouseraut->user_id;
+      $num=DB::row('collection_table', ['sentence_id'], 'sentence_id = "'.$addusersenid.'"');
+      if($num==null){
+         DB::insert('collection_table', [
+            'sentence_id' => $addusersenid,
+            'user_id'=> $adduserautid
+        ]);
+        $jifen="select user_integral from user_table where user_id=".$adduserautid;
+        $rejifen=$pdo->query($jifen);
+        $duijifen=$rejifen->fetchAll();
+        $jieguo=$duijifen[0][0]+1;
+        $jiaer="UPDATE user_table SET user_integral=".$jieguo." WHERE user_id=".$adduserautid;
+        $pdo->exec($jiaer);
+        $stmt =$pdo->prepare($jiaer);
+        $stmt->execute(); 
+        return  $jieguo;
+      }
+      else{
+        return "此句子您已收藏";
+      }
+    }
+    public function getcollection_list($oopenid){
+        $ouserid = DB::row('user_table', ['user_id'], 'openid = "'.$oopenid.'"');
+        $adduserid= $ouserid->user_id;
+        $db = DB::getInstance();
+        $strSql = "SELECT * FROM sentence_table AS a,collection_table AS b WHERE a.sentence_id=b.sentence_id AND user_id=".$adduserid;
+        $result=$db->query($strSql);
+        return $result->fetchAll();
+    }
+    public function getintegral($oopenid){
+      $pdo = DB::getInstance();
+      $ouseraut = DB::row('user_table', ['user_id'], 'openid = "'.$oopenid.'"');
+      $adduserautid= $ouseraut->user_id;
+      $jifen="select user_integral from user_table where user_id=".$adduserautid;
+      $rejifen=$pdo->query($jifen);
+      $duijifen=$rejifen->fetchAll();
+      return $duijifen[0][0];
+    }
+    public function deletecollection_list($clasnam,$claauto,$oopenid){
+      $pdo = DB::getInstance();
+      // $strSql = "select sentence_id from sentence_table where sentence_content=".$clasnam;
+      $ousersen = DB::row('sentence_table', ['sentence_id'], 'sentence_content = "'.$clasnam.'"');
+      $ouseraut = DB::row('user_table', ['user_id'], 'openid = "'.$oopenid.'"');
+      $addusersenid= $ousersen->sentence_id;
+      $adduserautid= $ouseraut->user_id;
+      $deleterows = DB::delete('collection_table', 'sentence_id = '.$addusersenid.'','user_id = '.$adduserautid);
+      return "删除成功";
+      // $num=DB::row('collection_table', ['sentence_id'], 'sentence_id = "'.$addusersenid.'"');
+      // if($num==null){
+      //    DB::insert('collection_table', [
+      //       'sentence_id' => $addusersenid,
+      //       'user_id'=> $adduserautid
+      //   ]);
+      //   $jifen="select user_integral from user_table where user_id=".$adduserautid;
+      //   $rejifen=$pdo->query($jifen);
+      //   $duijifen=$rejifen->fetchAll();
+      //   $jieguo=$duijifen[0][0]+1;
+      //   $jiaer="UPDATE user_table SET user_integral=".$jieguo." WHERE user_id=".$adduserautid;
+      //   $pdo->exec($jiaer);
+      //   $stmt =$pdo->prepare($jiaer);
+      //   $stmt->execute(); 
+      //   return  $jieguo;
+      // }
+    }
 	}
 ?> 

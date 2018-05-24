@@ -2,14 +2,14 @@
   <image src='../index/image/self_improvement_banner.jpg'></image>
   <text class='characters'>励志</text>
   <view class='sentence_box claerfix' wx:for="{{sentence}}" wx:key="{{index}}">
-    <form bindsubmit='enshrinesub' bindreset='enshrineReset'>
+    <!-- <form bindsubmit='enshrinesub' bindreset='enshrineReset'> -->
       <view class='sentence_button_box claerfix'>
-        <input class='sentence' name='sencontent'>{{item.sentence_content}}</input>
-        <button class='collection_button' form-type='submit'>收藏</button>
+        <view class='sentence'>{{item.sentence_content}}</view>
+        <button class='collection_button' catchtap='presscoll' data-select="{{item.sentence_content}}" data-author="{{item.sentence_source}}">收藏</button>
       </view>
       <view class='suthor_box'>
-        <input class='author' name='enauthor'>{{item.sentence_source}}</input>
+        <view class='author'>{{item.sentence_source}}</view>
       </view>
-    </form>
+    <!-- </form> -->
   </view>
 </view>

@@ -15,7 +15,7 @@
     作者/出处:
   </view>
   <input class='author_source' bindfocus='thatfocus' name="author"></input>
-  <button class='submission' bindtap="listenerButton" form-type='submit'>投稿</button>
+  <button class='submission' form-type='submit'>投稿</button>
   <toast hidden="{{hiddenToast}}" duration="2000" bindchange="toastHidden" >发表成功</toast>
   </form>
 </view> 

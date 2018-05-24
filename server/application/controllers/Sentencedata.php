@@ -149,5 +149,37 @@ class Sentencedata extends CI_Controller {
     $result=$this->sentence_model->get_publish_list($oopenid);
     echo json_encode($result);
   }
+  public function add_collection_list()
+  {
+    $clasnam = $this->input->get('clasnam');
+    $claauto = $this->input->get('claauto');
+    $oopenid = $this->input->get('oopenid');
+    $this->load->model('sentence_model');
+    $result=$this->sentence_model->add_collection_list($clasnam,$claauto,$oopenid);
+    echo json_encode($result);
+  }
+  public function get_collection_list()
+  {
+    $oopenid = $this->input->get('oopenid');
+    $this->load->model('sentence_model');
+    $result=$this->sentence_model->getcollection_list($oopenid);
+    echo json_encode($result);
+  }
+  public function delete_collection_list()
+  {
+    $clasnam = $this->input->get('clasnam');
+    $claauto = $this->input->get('claauto');
+    $oopenid = $this->input->get('oopenid');
+    $this->load->model('sentence_model');
+    $result=$this->sentence_model->deletecollection_list($clasnam,$claauto,$oopenid);
+    echo json_encode($result);
+  }
+  public function get_integral()
+  {
+    $oopenid = $this->input->get('oopenid');
+    $this->load->model('sentence_model');
+    $result=$this->sentence_model->getintegral($oopenid);
+    echo json_encode($result);
+  }
 }
 ?>

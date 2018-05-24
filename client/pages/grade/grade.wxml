@@ -1,7 +1,7 @@
 <!--pages/grade/grade.wxml-->
 <view class='mydengji'>
-  <view class='chenghao'>称号 ： 见习</view>
-  <view class='jifen'>积分 ： 5</view>
+  <view class='chenghao'>称号 ： {{designation}}</view>
+  <view class='jifen'>积分 ： {{integral}}</view>
 </view>
 <view class='shuoming'>说明：收藏句子加 1 积分，发表句子加 2 积分</view>
 <view class="table">  

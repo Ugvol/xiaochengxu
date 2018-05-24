@@ -9,55 +9,69 @@ Page({
     hiddenToast: true 
   },
   formSubmit: function (e) {
-    // var that=this;
-    var otextarea = e.detail.value.otext;
-    var oleibie = e.detail.value.leibie;
-    var oauthor = e.detail.value.author;
+    var that=this;
     var oopenid = getApp().globalData.myopenid; 
-    switch (oleibie) {
-      case '励志':
-        oleibie = 1;
-        break;
-      case '情感':
-        oleibie = 2;
-        break;
-      case '家书':
-        oleibie = 3;
-        break;
-      case '呓语':
-        oleibie = 4;
-        break;
-      case '歌词':
-        oleibie = 5;
-        break;
-      case '台词':
-        oleibie = 6;
-        break;
-      case '书籍':
-        oleibie = 7;
-        break;
-      case '诗词':
-        oleibie = 8;
-        break;
+    var otextarea = e.detail.value.otext;
+    var oauthor = e.detail.value.author;
+    if (!oopenid){
+      wx.showModal({
+        title: '提示',
+        content: '未登录',
+      })
     }
-    wx.request({
-      url: 'https://6jvh6uvq.qcloud.la/index.php/sentencedata/get_publish_list',
-      data: {
-        otextarea:otextarea,
-        oleibie:oleibie,
-        oauthor:oauthor,
-        oopenid: oopenid
-      },
-      header: {
-        'Content-Type': 'application/json'
-      },
-      success: function (res) {
-        console.log(res.data)
-        // that.setData({
-        //   sentence: res.data
-        // })
+    else if (!(otextarea)){
+      wx.showModal({
+        title: '提示',
+        content: '句子为空',
+      })
+    }
+    else if (oopenid && otextarea){
+      var oleibie = e.detail.value.leibie;
+      switch (oleibie) {
+        case '励志':
+          oleibie = 1;
+          break;
+        case '情感':
+          oleibie = 2;
+          break;
+        case '家书':
+          oleibie = 3;
+          break;
+        case '呓语':
+          oleibie = 4;
+          break;
+        case '歌词':
+          oleibie = 5;
+          break;
+        case '台词':
+          oleibie = 6;
+          break;
+        case '书籍':
+          oleibie = 7;
+          break;
+        case '诗词':
+          oleibie = 8;
+          break;
       }
-    })
+      wx.request({
+        url: 'https://6jvh6uvq.qcloud.la/index.php/sentencedata/get_publish_list',
+        data: {
+          otextarea: otextarea,
+          oleibie: oleibie,
+          oauthor: oauthor,
+          oopenid: oopenid
+        },
+        header: {
+          'Content-Type': 'application/json'
+        },
+        success: function (res) {
+          console.log(res.data)
+          that.setData({
+            hiddenToast: !that.data.hiddenToast
+          })
+        }
+      })
+    }
   },
   thisfocus:function(){
     this.setData({
@@ -74,11 +88,11 @@ Page({
       casIndex: e.detail.value
     })
   },
-  listenerButton: function () {
-    this.setData({
-      hiddenToast: !this.data.hiddenToast
-    })
-  },
+  // listenerButton: function () {
+  //   this.setData({
+  //     hiddenToast: !this.data.hiddenToast
+  //   })
+  // },
   toastHidden: function () {
     this.setData({
       hiddenToast: true

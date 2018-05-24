@@ -1,28 +1,10 @@
-<view class='sentence_box claerfix'>
+<view class='sentence_box claerfix' wx:for="{{sentence}}" wx:key="{{index}}">
   <view class='sentence_button_box claerfix'>
-    <view class='sentence'>天行健，君子以自强不息。地势坤，君子以厚德载物。</view>
-    <button class='collection_button'>删除</button>
+    <view class='sentence'>{{item.sentence_content}}</view>
+    <button class='collection_button' catchtap='presscoll' data-select="{{item.sentence_content}}" data-author="{{item.sentence_source}}">删除</button>
   </view>
   <view class='suthor_box'>
-    <view class='author'>《周易》</view>
+    <view class='author'>{{item.sentence_source}}</view>
   </view>
-</view>
-<view class='sentence_box claerfix'>
-  <view class='sentence_button_box claerfix'>
-    <view class='sentence'>一杯敬朝阳，一杯敬月光，唤醒我的向往，温柔了寒窗，于是可以不回头的逆风飞翔，不怕心头有雨，眼底有霜。</view>
-    <button class='collection_button'>删除</button>
-  </view>
-  <view class='suthor_box'>
-    <view class='author'>毛不易《消愁》</view>
-  </view>
-</view>
-<view class='sentence_box claerfix'>
-  <view class='sentence_button_box claerfix'>
-    <view class='sentence'>在天愿作比翼鸟，在地愿为连理枝。
-天长地久有时尽，此恨绵绵无绝期。</view>
-    <button class='collection_button'>删除</button>
-  </view>
-  <view class='suthor_box'>
-    <view class='author'>白居易《长恨歌》</view>
-  </view>
+  <toast hidden="{{hiddenToast}}" duration="2000" bindchange="toastHidden" >删除成功，下拉刷新</toast>
 </view>
