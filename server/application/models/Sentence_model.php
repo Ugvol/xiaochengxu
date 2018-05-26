@@ -1,6 +1,20 @@
 <?php
 	use QCloud_WeApp_SDK\Mysql\Mysql as DB;
 	class Sentence_model extends CI_Model{
+    public function getdailylist(){
+      $pdo = DB::getInstance();
+      $sql = 'select count(*) from sentence_table';
+      $result = $pdo->query($sql);//提交sql
+      $rowsNumber = $result->fetchColumn();//取回结果集中的一个字段
+      return $rowsNumber;
+		}
+    public function getdaylist($val){
+      // return DB::select('sentence_table', ['*'],'sentence_id='.$val);
+      $db = DB::getInstance();
+      $strSql = "select * from sentence_table where sentence_id=".$val;
+      $result=$db->query($strSql);
+      return $result->fetchAll();
+		}
 		public function get_list(){
 			return DB::select('sentence_table', ['*'],'category_id=1');
 		}
@@ -180,6 +194,17 @@
       //   $stmt->execute(); 
       //   return  $jieguo;
       // }
+    }
+    public function deletepublication_list($clasnam,$claauto,$oopenid){
+      $pdo = DB::getInstance();
+      // $strSql = "select sentence_id from sentence_table where sentence_content=".$clasnam;
+      $ousersen = DB::row('sentence_table', ['sentence_id'], 'sentence_content = "'.$clasnam.'"');
+      $ouseraut = DB::row('user_table', ['user_id'], 'openid = "'.$oopenid.'"');
+      $addusersenid= $ousersen->sentence_id;
+      $adduserautid= $ouseraut->user_id;
+      $delete_publish_rows = DB::delete('publish_table', 'sentence_id = '.$addusersenid.'','user_id = '.$adduserautid);
+      // $delet_esenence_rows = DB::delete('publish_table', 'sentence_id = '.$addusersenid);
+      return "删除成功";
     }
 	}
 ?> 

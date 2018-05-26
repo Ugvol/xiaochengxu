@@ -26,37 +26,53 @@ Page({
         console.log(res.data);
         if (res.data =="删除成功"){
           that.setData({
-            hiddenToast: !that.data.hiddenToast
+            sentence: []
+          })
+          wx.request({
+            url: 'https://6jvh6uvq.qcloud.la/index.php/sentencedata/get_collection_list',
+            data: {
+              oopenid: oopenid
+            },
+            header: {
+              'content-type': 'application/json' // 默认值
+            },
+            success: function(res){
+              console.log(res.data),
+                // console.log(res.data[0].sentence_id),
+                that.setData({
+                  sentence: res.data,
+                  // hiddenToast: !that.data.hiddenToast
+                })
+            }
           })
           // wx.startPullDownRefresh();
-        
         }
       }
     })
   },
-  onPullDownRefresh: function () {
-    wx.stopPullDownRefresh();
-    var oopenid = getApp().globalData.myopenid;
-      this.setData({
-        sentence: []
-      })
-      wx.request({
-        url: 'https://6jvh6uvq.qcloud.la/index.php/sentencedata/get_collection_list',
-        data: {
-          oopenid: oopenid
-        },
-        header: {
-          'content-type': 'application/json' // 默认值
-        },
-        success: res => {
-          console.log(res.data),
-            // console.log(res.data[0].sentence_id),
-            this.setData({
-              sentence: res.data
-            })
-        }
-      })
-  },
+  // onPullDownRefresh: function () {
+  //   wx.stopPullDownRefresh();
+  //   var oopenid = getApp().globalData.myopenid;
+  //     this.setData({
+  //       sentence: []
+  //     })
+  //     wx.request({
+  //       url: 'https://6jvh6uvq.qcloud.la/index.php/sentencedata/get_collection_list',
+  //       data: {
+  //         oopenid: oopenid
+  //       },
+  //       header: {
+  //         'content-type': 'application/json' // 默认值
+  //       },
+  //       success: res => {
+  //         console.log(res.data),
+  //           // console.log(res.data[0].sentence_id),
+  //           this.setData({
+  //             sentence: res.data
+  //           })
+  //       }
+  //     })
+  // },
   toastHidden: function () {
     this.setData({
       hiddenToast: true
@@ -88,7 +104,7 @@ Page({
     else{
       wx.showModal({
         title: '提示',
-        content: '未登录',
+        content: '未登录，请先登录',
       })
     }
   },

@@ -12,11 +12,11 @@ Page({
     var that=this;
     var oopenid = getApp().globalData.myopenid; 
     var otextarea = e.detail.value.otext;
-    var oauthor = e.detail.value.author;
+    var oauthor = e.detail.value.author; 
     if (!oopenid){
       wx.showModal({
         title: '提示',
-        content: '未登录',
+        content: '未登录，请先登录',
       })
     }
     else if (!(otextarea)){
@@ -25,6 +25,12 @@ Page({
         content: '句子为空',
       })
     }
+    // else if (oauthor == "" || oauthor == null || oauthor == " "){
+    //   oauthor=" ";
+    //   // that.setData({
+    //   //   oauthor :' '
+    //   // })
+    // }
     else if (oopenid && otextarea){
       var oleibie = e.detail.value.leibie;
       switch (oleibie) {
@@ -53,6 +59,12 @@ Page({
           oleibie = 8;
           break;
       }
+      if (oauthor == "" || oauthor == null || oauthor == " ") {
+      oauthor=" ";
+        // that.setData({
+        //   oauthor :' '
+        // })
+      }
       wx.request({
         url: 'https://6jvh6uvq.qcloud.la/index.php/sentencedata/get_publish_list',
         data: {
@@ -66,9 +78,17 @@ Page({
         },
         success: function (res) {
           console.log(res.data)
-          that.setData({
-            hiddenToast: !that.data.hiddenToast
-          })
+          if (res.data!="句子重复"){
+            that.setData({
+              hiddenToast: !that.data.hiddenToast
+            })
+          }
+          else{
+            wx.showModal({
+              title: '提示',
+              content: '此句子已被发表',
+            })
+          }
         }
       })
     }

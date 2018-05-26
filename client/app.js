@@ -25,6 +25,7 @@ App({
         // })
     },
     globalData: {
-      myopenid: null
+      myopenid: null,
+      onum:[]
     } 
 })

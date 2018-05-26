@@ -3,22 +3,21 @@
   <image wx:if="{{ changeclick==1 }}" src='../index/image/daily_recommendation2.jpg' class='daily_recommendation_img'></image>
   <image wx:if="{{ changeclick==2 }}" src='../index/image/daily_recommendation3.jpg' class='daily_recommendation_img'></image>
   <view class='sentence'>
-    <text  wx:if="{{ changeclick==0 }}" class='daily_sentence'>愿你有好运气，如果没有，愿你在不幸中学会慈悲；愿你被很多人爱,如果没有，愿你在寂寞中学会宽容。\n\n</text>
-    <text wx:if="{{ changeclick==1 }}" class='daily_sentence'>山再高，往上爬，一定能登顶
-路再远，走下去，一定能到达\n\n</text>
-     <text wx:if="{{ changeclick==2 }}" class='daily_sentence'>知我者谓我心忧，不知我者谓我何求.\n\n</text> 
-    <text wx:if="{{ changeclick==0 }}" class='daily_author'>刘瑜《愿你慢慢长大》</text>
-    <text wx:if="{{ changeclick==1 }}" class='daily_author'>唯品会广告文案</text>
-     <text wx:if="{{ changeclick==2 }}" class='daily_author'>李涛《登高丘而望远海》</text> 
+    <text  wx:if="{{ changeclick==0 }}" class='daily_sentence'>{{sentence}}\n\n</text>
+     <text wx:if="{{ changeclick==1 }}" class='daily_sentence'>{{sentence1}}\n\n</text>
+     <text wx:if="{{ changeclick==2 }}" class='daily_sentence'>{{sentence2}}\n\n</text> 
+     <text wx:if="{{ changeclick==0 }}" class='daily_author'>{{source}}</text>
+    <text wx:if="{{ changeclick==1 }}" class='daily_author'>{{source1}}</text>
+     <text wx:if="{{ changeclick==2 }}" class='daily_author'>{{source2}}</text>  
   </view>
   <view class='like'>
     <view class='likebox'>
-      <view bindtap='chooseThis'>
+      <!-- <view bindtap='chooseThis'>
         <image  wx:if="{{ imgclick==0 }}" src='../index/image/beforelike.png'></image>
         <image  wx:if="{{ imgclick==1 }}" src='../index/image/like.png'></image>
         <view class='likenum' wx:if="{{ imgclick==0 }}">(127)</view>
         <view class='likenum' wx:if="{{ imgclick==1 }}">(128)</view>
-      </view>
+      </view> -->
       <view bindtap='changethis'>
         <image src='../index/image/change.png'></image>
       </view>

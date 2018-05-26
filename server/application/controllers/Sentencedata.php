@@ -2,6 +2,19 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Sentencedata extends CI_Controller {
+  public function get_daily_list()
+  {
+    $this->load->model('sentence_model');
+    $result=$this->sentence_model->getdailylist();
+    echo json_encode($result);
+  }
+   public function get_day_list()
+  {
+    $val = $this->input->get('daynum');
+    $this->load->model('sentence_model');
+    $result=$this->sentence_model->getdaylist($val);
+    echo json_encode($result);
+  }
   public function get_sentence_list()
   {
     $this->load->model('sentence_model');
@@ -172,6 +185,15 @@ class Sentencedata extends CI_Controller {
     $oopenid = $this->input->get('oopenid');
     $this->load->model('sentence_model');
     $result=$this->sentence_model->deletecollection_list($clasnam,$claauto,$oopenid);
+    echo json_encode($result);
+  }
+  public function delete_publacition_list()
+  {
+    $clasnam = $this->input->get('clasnam');
+    $claauto = $this->input->get('claauto');
+    $oopenid = $this->input->get('oopenid');
+    $this->load->model('sentence_model');
+    $result=$this->sentence_model->deletepublication_list($clasnam,$claauto,$oopenid);
     echo json_encode($result);
   }
   public function get_integral()

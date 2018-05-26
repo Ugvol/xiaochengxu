@@ -11,5 +11,6 @@
       <view class='author'>{{item.sentence_source}}</view>
     </view>
   </view>
+  <toast hidden="{{hiddenToast}}" duration="2000" bindchange="toastHidden" >收藏成功</toast>
 </view>
 

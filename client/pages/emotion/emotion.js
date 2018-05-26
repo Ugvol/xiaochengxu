@@ -5,10 +5,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-    sentence: []
+    sentence: [],
+    hiddenToast: true
   },
   presscoll: function (e) {
-    // var that = this;
+    var that = this;
     var clasnam = e.currentTarget.dataset.select;
     var claauto = e.currentTarget.dataset.author;
     var oopenid = getApp().globalData.myopenid;
@@ -24,10 +25,32 @@ Page({
           'Content-Type': 'application/json'
         },
         success: function (res) {
-          console.log(res.data)
+          console.log(res.data);
+          if (res.data == '此句子您已收藏') {
+            wx.showModal({
+              title: '提示',
+              content: '此句子您已收藏',
+            })
+          }
+          else {
+            that.setData({
+              hiddenToast: !that.data.hiddenToast
+            })
+          }
         }
       })
     }
+    else{
+      wx.showModal({
+        title: '提示',
+        content: '未登录，请先登录',
+      })
+    }
+  },
+  toastHidden: function () {
+    this.setData({
+      hiddenToast: true
+    })
   },
   /**
    * 生命周期函数--监听页面加载

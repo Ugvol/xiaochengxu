@@ -6,7 +6,13 @@ Page({
    */
   data: {
     imgclick:0,
-    changeclick:0
+    changeclick:0,
+    sentence:'',
+    sentence1: '',
+    sentence2: '',
+    source:'',
+    source1:'',
+    source2:''
   },
   chooseThis:function () {
     var that = this;
@@ -18,23 +24,140 @@ Page({
   changethis:function(){
     var that=this;
     if(that.data.changeclick===0){
-      var changeclick=1;
+      that.setData({
+        changeclick: 1
+      });
+      wx.request({
+        url: 'https://6jvh6uvq.qcloud.la/index.php/sentencedata/get_day_list', //仅为示例，并非真实的接口地址
+        data: {
+          daynum: getApp().globalData.onum[1]
+        },
+        header: {
+          'content-type': 'application/json' // 默认值
+        },
+        success: res => {
+          console.log(res.data),
+            this.setData({
+              sentence1: res.data[0].sentence_content,
+              source1: res.data[0].sentence_source
+            })
+        }
+      })
     }
     else if (that.data.changeclick === 1) {
-      var changeclick = 2;
+      that.setData({
+        changeclick: 2
+      });
+      wx.request({
+        url: 'https://6jvh6uvq.qcloud.la/index.php/sentencedata/get_day_list', //仅为示例，并非真实的接口地址
+        data: {
+          daynum: getApp().globalData.onum[2]
+        },
+        header: {
+          'content-type': 'application/json' // 默认值
+        },
+        success: res => {
+          console.log(res.data),
+            res.data[0].sentence_source == null ? '' : res.data[0].sentence_source,
+            this.setData({
+              sentence2: res.data[0].sentence_content,
+              source2: res.data[0].sentence_source
+            })
+        }
+      })
     }
     else if (that.data.changeclick === 2) {
-      var changeclick = 0;
+      that.setData({
+        changeclick: 0
+      });
+      wx.request({
+        url: 'https://6jvh6uvq.qcloud.la/index.php/sentencedata/get_day_list', //仅为示例，并非真实的接口地址
+        data: {
+          daynum: getApp().globalData.onum[0]
+        },
+        header: {
+          'content-type': 'application/json' // 默认值
+        },
+        success: res => {
+          console.log(res.data),
+            this.setData({
+            sentence: res.data[0].sentence_content,
+            source: res.data[0].sentence_source
+            })
+        }
+      })
     };
-    that.setData({
-      changeclick: changeclick
-    });
+    // that.setData({
+    //   changeclick: changeclick
+    // });
   },
+  sentencenum:function(){
+    wx.request({
+      url: 'https://6jvh6uvq.qcloud.la/index.php/sentencedata/get_daily_list', //仅为示例，并非真实的接口地址
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success: res => {
+        console.log(res.data);
+        var arr = [];
+
+        for (var i = 1; i <= res.data; i++) {
+          arr.push(i);
+        }
+
+        arr.sort(
+          function () {
+            return 0.5 - Math.random();
+          }
+        );
+
+        arr.length=3;
+        getApp().globalData.onum = arr;
+        wx.request({
+        url: 'https://6jvh6uvq.qcloud.la/index.php/sentencedata/get_day_list', //仅为示例，并非真实的接口地址
+        data: {
+          daynum: getApp().globalData.onum[0]
+        },
+        header: {
+          'content-type': 'application/json' // 默认值
+        },
+        success: res => {
+          console.log(res.data),
+            this.setData({
+              sentence: res.data[0].sentence_content,
+              source: res.data[0].sentence_source
+            })
+        }
+      })
+      }
+    })
+    // return onum;
+  },
+  // changesentence:function(){
+  //   $rownum=this.sentencenum();
+
+  // },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+   this.sentencenum();
+   console.log(getApp().globalData.onum);
+  //  wx.request({
+  //    url: 'https://6jvh6uvq.qcloud.la/index.php/sentencedata/get_day_list', //仅为示例，并非真实的接口地址
+  //    data: {
+  //      daynum: getApp().globalData.onum[0]
+  //    },
+  //    header: {
+  //      'content-type': 'application/json' // 默认值
+  //    },
+  //    success: res => {
+  //      console.log(res.data),
+  //        this.setData({
+  //          sentence: res.data
+  //        })
+  //    }
+  //  })
   },
 
   /**

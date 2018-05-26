@@ -1,9 +1,10 @@
 <view class='sentence_box claerfix' wx:for="{{sentence}}" wx:key="{{index}}">
   <view class='sentence_button_box claerfix'>
     <view class='sentence'>{{item.sentence_content}}</view>
-    <button class='collection_button'>删除</button>
+    <button class='collection_button' catchtap='presscoll' data-select="{{item.sentence_content}}" data-author="{{item.sentence_source}}">删除</button>
   </view>
   <view class='suthor_box'>
     <view class='author'>{{item.sentence_source}}</view>
   </view>
+  <toast hidden="{{hiddenToast}}" duration="2000" bindchange="toastHidden" >删除成功</toast>
 </view>
