@@ -77,7 +77,7 @@ Page({
           'Content-Type': 'application/json'
         },
         success: function (res) {
-          console.log(res.data)
+          // console.log(res.data)
           if (res.data!="句子重复"){
             that.setData({
               hiddenToast: !that.data.hiddenToast

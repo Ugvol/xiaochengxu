@@ -21,7 +21,7 @@ Page({
         'Content-Type': 'application/json'
       },
       success: function (res) {
-        console.log(res.data),
+        // console.log(res.data),
         that.setData({
           sentence: res.data
         })
@@ -48,7 +48,7 @@ Page({
           'Content-Type': 'application/json'
         },
         success: function (res) {
-          console.log(res.data);
+          // console.log(res.data);
           if (res.data == '此句子您已收藏') {
             wx.showModal({
               title: '提示',

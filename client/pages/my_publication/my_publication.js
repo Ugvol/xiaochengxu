@@ -23,7 +23,7 @@ Page({
         'Content-Type': 'application/json'
       },
       success: function (res) {
-        console.log(res.data);
+        // console.log(res.data);
         if (res.data == "删除成功") {
           that.setData({
             sentence: []
@@ -37,7 +37,7 @@ Page({
               'content-type': 'application/json' // 默认值
             },
             success: function(res){
-              console.log(res.data),
+              // console.log(res.data),
                 // console.log(res.data[0].sentence_id),
                 that.setData({
                   sentence: res.data
@@ -81,7 +81,7 @@ Page({
           'content-type': 'application/json' // 默认值
         },
         success: res => {
-          console.log(res.data),
+          // console.log(res.data),
             // console.log(res.data[0].sentence_id),
             this.setData({
               sentence: res.data

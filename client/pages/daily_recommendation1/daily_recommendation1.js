@@ -36,7 +36,7 @@ Page({
           'content-type': 'application/json' // 默认值
         },
         success: res => {
-          console.log(res.data),
+          // console.log(res.data),
             this.setData({
               sentence1: res.data[0].sentence_content,
               source1: res.data[0].sentence_source
@@ -57,7 +57,7 @@ Page({
           'content-type': 'application/json' // 默认值
         },
         success: res => {
-          console.log(res.data),
+          // console.log(res.data),
             res.data[0].sentence_source == null ? '' : res.data[0].sentence_source,
             this.setData({
               sentence2: res.data[0].sentence_content,
@@ -79,7 +79,7 @@ Page({
           'content-type': 'application/json' // 默认值
         },
         success: res => {
-          console.log(res.data),
+          // console.log(res.data),
             this.setData({
             sentence: res.data[0].sentence_content,
             source: res.data[0].sentence_source
@@ -98,7 +98,7 @@ Page({
         'content-type': 'application/json' // 默认值
       },
       success: res => {
-        console.log(res.data);
+        // console.log(res.data);
         var arr = [];
 
         for (var i = 1; i <= res.data; i++) {
@@ -122,7 +122,7 @@ Page({
           'content-type': 'application/json' // 默认值
         },
         success: res => {
-          console.log(res.data),
+          // console.log(res.data),
             this.setData({
               sentence: res.data[0].sentence_content,
               source: res.data[0].sentence_source

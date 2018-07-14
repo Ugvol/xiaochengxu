@@ -33,7 +33,7 @@ Page({
           'Content-Type': 'application/json'
         },
         success: function (res) {
-          console.log(res.data);
+          // console.log(res.data);
           var odesi;
           if (res.data >= 0 && res.data <= 10) { odesi ='见习';}
           else if (res.data >= 11 && res.data <= 30) { odesi = '正式'; }

@@ -6,7 +6,7 @@ Page({
   data: {
     sentence:[],
     hiddenToast: true
-  },
+  }, 
   presscoll:function(e){
     var that = this;
     var clasnam = e.currentTarget.dataset.select;
@@ -24,7 +24,7 @@ Page({
           'Content-Type': 'application/json'
         },
         success: function (res) {
-          console.log(res.data);
+          // console.log(res.data);
           if (res.data=='此句子您已收藏'){
             wx.showModal({
               title: '提示',
@@ -61,7 +61,7 @@ Page({
         'content-type': 'application/json' // 默认值
       },
       success: res=> {
-        console.log(res.data),
+        // console.log(res.data),
         this.setData({
           sentence: res.data
         })
