@@ -2,7 +2,7 @@
 微信小程序开发：佳句美句的查找阅读、发布收藏平台
 ## 小程序界面如下
 ![Image text](http://g.recordit.co/08yAO8MGd8.gif)
-![Image text](http://g.recordit.co/3z7JwCsKcy.gif)
+![Image text](http://g.recordit.co/2GF7fsof4o.gif)
 ![Image text](http://g.recordit.co/3z7JwCsKcy.gif)
 
 
